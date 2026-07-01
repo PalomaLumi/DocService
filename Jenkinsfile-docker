@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clonar código') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Compilar e gerar WAR') {
+            steps {
+                sh 'mvn clean package -DskipTests'
+            }
+        }
+
+        stage('Gerar imagem Docker') {
+            steps {
+                sh 'docker build -t webapp-springboot-tomcat .'
+            }
+        }
+
+        stage('Deploy no Docker') {
+            steps {
+                sh '''
+                docker rm -f webapp-container || true
+                docker run -d --name webapp-container -p 8181:8080 webapp-springboot-tomcat
+                '''
+            }
+        }
+    }
+}

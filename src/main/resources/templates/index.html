@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Spring Boot WAR</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #020617, #1d4ed8, #38bdf8);
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            text-align: center;
+        }
+
+        .card {
+            width: 90%;
+            max-width: 1100px;
+            padding: 55px 45px;
+            border-radius: 30px;
+            background: rgba(15, 23, 42, 0.82);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 12px 22px;
+            border-radius: 999px;
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid rgba(34, 197, 94, 0.6);
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 74px;
+            line-height: 1.08;
+            text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            margin: 28px 0 12px;
+            font-size: 40px;
+            color: #bfdbfe;
+        }
+
+        p {
+            margin: 14px 0;
+            font-size: 28px;
+        }
+
+        .info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 38px;
+        }
+
+        .box {
+            padding: 22px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .label {
+            display: block;
+            font-size: 18px;
+            opacity: 0.8;
+            margin-bottom: 8px;
+        }
+
+        .valor {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 800px) {
+            h1 { font-size: 46px; }
+            h2 { font-size: 30px; }
+            p { font-size: 22px; }
+            .info { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <main class="card">
+        <div class="badge">✅ Aplicação online</div>
+
+        <h1 th:text="${titulo}">Projeto Java Web funcionando!</h1>
+        <h2 th:text="${mensagem}">Deploy realizado com sucesso pelo Jenkins</h2>
+        <p th:text="${subtitulo}">Spring Boot + Maven + WAR + Apache Tomcat</p>
+
+        <section class="info">
+            <div class="box">
+                <span class="label">Aluna</span>
+                <span class="valor" th:text="${aluna}">Paloma Lumi Costa</span>
+            </div>
+            <div class="box">
+                <span class="label">Versão</span>
+                <span class="valor" th:text="${versao}">v1.0</span>
+            </div>
+            <div class="box">
+                <span class="label">Data/Hora do acesso</span>
+                <span class="valor" th:text="${dataHora}">01/07/2026 10:00:00</span>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

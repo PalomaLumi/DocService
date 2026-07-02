@@ -16,7 +16,7 @@ public class HomeController {
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("titulo", "Projeto Java Web funcionando!");
-        model.addAttribute("mensagem", "Deploy realizado com sucesso pelo Jenkins");
+        model.addAttribute("mensagem", "Deploy realizado com sucesso pelo Jenkins: AGORA PRECISO DE NOTA PARA PASSAR ");
         model.addAttribute("subtitulo", "Spring Boot + Maven + WAR + Apache Tomcat");
         model.addAttribute("aluna", "Paloma Lumi Costa");
         model.addAttribute("versao", VERSAO);

@@ -9,6 +9,6 @@ RUN rm -rf /usr/local/tomcat/webapps/*
 COPY target/webapp.war /usr/local/tomcat/webapps/webapp.war
 
 # Porta interna do Tomcat
-EXPOSE 8080
+EXPOSE 8181
 
 CMD ["catalina.sh", "run"]

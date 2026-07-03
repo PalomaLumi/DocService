@@ -1,0 +1,49 @@
+pipeline {
+    agent any 
+    
+    stages {
+        stage('Baixar código') {
+            steps {
+                // Alternativa oficial para clone de repositórios
+                git branch: 'main', url: 'https://github.com/PalomaLumi/DocService.git'
+                echo 'Código baixado do GitHub'
+            }
+        }
+
+        stage('Gerar Pacote') {
+            steps {
+                // Garante que não há lixo de compilações anteriores
+                sh 'mvn clean package -DskipTests'
+            }
+        }
+
+        stage('Criar imagem Docker') {
+            steps {
+                // A tag deve conter letras minúsculas e sem espaços
+                sh 'docker build -t paloma-webapp:latest_$BUILD_ID .'
+            }
+        }
+
+        stage('Parar container antigo') {
+            steps {
+                // Evita que o pipeline pare se o container não existir
+                sh '''
+                docker stop paloma-webapp || true
+                docker rm paloma-webapp || true
+                '''
+            }
+        }
+
+        stage('Rodar novo container') {
+            steps {
+                // Montagem de volumes e outras configs podem ser adicionadas aqui
+                sh '''
+                docker run -d \
+                --name paloma-webapp \
+                -p 8181:8080 \
+                paloma-webapp:latest_$BUILD_ID
+                '''
+            }
+        }
+    }
+}

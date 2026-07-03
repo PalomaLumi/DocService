@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HomeController {
 
-    private static final String VERSAO = "v2.0";
+    private static final String VERSAO = "v3.0";
 
     @GetMapping("/")
     public String home(Model model) {

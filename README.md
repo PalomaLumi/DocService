@@ -1,7 +1,7 @@
 # Projeto Spring Boot WAR - Jenkins + Tomcat + Docker
 
 Projeto simples para demonstrar Integração Contínua com:
-
+Disciplina de gerenciamento de processos
 - Java 17
 - Spring Boot
 - Maven
